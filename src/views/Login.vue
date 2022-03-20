@@ -53,9 +53,9 @@ export default {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$axios.post(url:'/login',this.loginForm).then(res =>{
+            this.$axios.post('/login',this.loginForm).then(res =>{
          const jwt=res.headers['authorization']
-         this.$store.commit(type:'SET_TOKEN',jwt)
+         this.$store.commit('SET_TOKEN',jwt)
          this.$router.push("/index")
             })
           } else {
@@ -68,7 +68,7 @@ export default {
         this.$refs[formName].resetFields();
       },
       getImage(){
-        this.$axios.post(url:'/image').then(res =>{
+        this.$axios.get('/image').then(res =>{
              this.loginForm.token=res.data.data.token
              this.image=res.data.data.image
             })
